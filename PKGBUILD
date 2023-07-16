@@ -10,7 +10,7 @@ _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
 pkgver=6.1.38_rt12
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 url="https://www.kernel.org"
 license=('GPL2')
@@ -42,10 +42,11 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         '0412-bootsplash.patch'
         '0413-bootsplash.gitpatch'
         # RT Patch
-        "$url/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgver}-${_rtpatchver}.patch.xz")
+        #"$url/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgver}-${_rtpatchver}.patch.xz")
+        "https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/$_basekernel/older/patch-$_pkgver-$_rtpatchver.patch.xz")
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
             '9f5fcfa5092315e8a736539ce341df48a2320f952a38ec184740d5561e471e63'
-            '346121a0dff8fc7f0faed5741dc8a49c50ec66eefc80c5b3cef876c27311a507'
+            'c3ca444a53e45a7fca7505eb6068560bef3b0f57723a97fa22e16e3c5d9108aa'
             '05f04019d4a2ee072238c32860fa80d673687d84d78ef436ae9332b6fb788467'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
