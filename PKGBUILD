@@ -5,11 +5,11 @@ pkgbase=linux61-rt
 pkgname=("$pkgbase" "$pkgbase-headers")
 _basekernel=6.1
 _sub=46
-_rtpatchver=rt13
+_rtpatchver=rt14
 _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
-pkgver=6.1.46_rt13
+pkgver=6.1.46_rt14
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org"
@@ -73,7 +73,7 @@ sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
             'b6e695edbe349505a89c98054a54443acd90830a312cd035393c5c0a624e45c0'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
-            'df29cf27bb7ef0b7750f541d959b791905a5d41a322896f9a4bb57b5ab00f202')
+            '27f87febb1f4254416c76fd0784a1d950ec44b900b3f0e4359e0c77282d73757')
 validpgpkeys=('64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
             '4FE5E3262872E4CC')
 pkgver() {
