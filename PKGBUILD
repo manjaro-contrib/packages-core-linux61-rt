@@ -4,12 +4,12 @@
 pkgbase=linux61-rt
 pkgname=("$pkgbase" "$pkgbase-headers")
 _basekernel=6.1
-_sub=64
-_rtpatchver=rt17
+_sub=65
+_rtpatchver=rt18
 _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
-pkgver=6.1.64_rt17
+pkgver=6.1.65_rt18
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org"
@@ -50,8 +50,8 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         #"$url/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgver}-${_rtpatchver}.patch.xz")
         "https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/$_basekernel/older/patch-$_pkgver-$_rtpatchver.patch.xz")
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            'b2e22e277c5d72f680bd5dce35ea432b666a9a3bd5251876ce2ddb3882011c21'
-            'a160b9eca3caa3091247a8e16c4b9bdc52e4b33c32f87ac294bf41a9561c391c'
+            'f1c2dcd7e09ee97ffc4e5d6aa1bc27740c33aa70610662032ed89fff675f9afc'
+            'd71422cefd8effcabfaaded01042cffa56a337e741eec397a8500490717c3b5e'
             '05f04019d4a2ee072238c32860fa80d673687d84d78ef436ae9332b6fb788467'
             '982806daa2c789a63cf685eef71a82754b0530852b7ba130cc9d4025dab79b2f'
             '0a32a567966d7c33035634c46d56073e8a6f66e4d9729b8b25d09579d00c3e7b'
@@ -72,7 +72,7 @@ sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
             'b6e695edbe349505a89c98054a54443acd90830a312cd035393c5c0a624e45c0'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
-            'e7007d58900066cf2e4e2bba02e334ac05db47974156b671fd18eb7c571076ef')
+            '28c32df343d416409fe779093bf911776ddc92aff91a9eb52dbb1f820729be2b')
 validpgpkeys=('64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
             '4FE5E3262872E4CC')
 pkgver() {
