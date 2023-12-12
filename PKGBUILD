@@ -16,7 +16,7 @@ url="https://www.kernel.org"
 license=('GPL2')
 makedepends=('bc' 'cpio' 'git' 'graphviz' 'imagemagick' 'kmod' 'libelf' 'pahole' 'perl' 'python-sphinx' 'tar' 'texlive-latexextra' 'xmlto' 'xz')
 options=('!strip')
-source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.gz"
+source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         # upstream patch
         "$url/pub/linux/kernel/v6.x/patch-${_pkgver}.xz"
         # rt-config
@@ -51,7 +51,7 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.gz"
         # RT Patch
         #"$url/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgver}-${_rtpatchver}.patch.xz")
         "https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/$_basekernel/older/patch-$_pkgver-$_rtpatchver.patch.xz")
-sha256sums=('6246ee76209fb1ff46ffcd67d0cc8029dec2ef929de32ef5460a7a5649583103'
+sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
             '94e666dce482c43d582d3fe608e8af159f6d5df34b6e9dfa1e12fe15fa0d7a36'
             'fdec12a8fecaf2f70e1dd21f7a22a7501cf3859c75bc51ccb71f538c845cd182'
             'de35604b1337f3d7cd7ce8dc02a741bfdde05709f22f4dfd29d065b20b517e4c'
