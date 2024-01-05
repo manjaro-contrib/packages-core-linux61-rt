@@ -4,12 +4,12 @@
 pkgbase=linux61-rt
 pkgname=("$pkgbase" "$pkgbase-headers")
 _basekernel=6.1
-_sub=67
-_rtpatchver=rt20
+_sub=70
+_rtpatchver=rt21
 _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
-pkgver=6.1.67_rt20
+pkgver=6.1.70_rt21
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org"
@@ -27,8 +27,6 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         '0103-drmi915-improve_the_catch-all_evict_to_handle_lock_contention.patch'
         # MANJARO Patches
         '0999-patch_realtek.patch'
-        'wifi-cfg80211-fix-cqm-for-non-range-use.patch'
-        'wifi-nl80211-fix-deadlock-in-nl80211_set_cqm_rssi-6.6.x.patch'
         # Bootsplash
         '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0302-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
@@ -52,14 +50,12 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         #"$url/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgver}-${_rtpatchver}.patch.xz")
         "https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/$_basekernel/older/patch-$_pkgver-$_rtpatchver.patch.xz")
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            'e7119eff6e3561de26bcfe2aa379713a006d1aaa15bfbd18b3b94263699565ad'
-            'c930d498d700407823f40dbeb12de4d07de400d31871c648ecc0f15d636e5cf6'
+            'b86c040ac083ae8e5bc4582fe0571209cde4433ef76ea86ea43210be2cb38689'
+            'bb3ee2e85993a6ae103d7f8020c202ec9edf59b0531131af7455416d6bfbe487'
             'de35604b1337f3d7cd7ce8dc02a741bfdde05709f22f4dfd29d065b20b517e4c'
             '982806daa2c789a63cf685eef71a82754b0530852b7ba130cc9d4025dab79b2f'
             '0a32a567966d7c33035634c46d56073e8a6f66e4d9729b8b25d09579d00c3e7b'
             '3aa9f1ca47bb078f3c9a52fe61897cf4fe989068cd7e66bfa6644fd605fa40d2'
-            'da395b30e32d2f09e144e2b441dc5da6a483b9ce75d660f936a12a1a93646207'
-            '4e4477ca4d7a434a48ed84bb4f223e2ad5ea739ba929804f0e502c948c9ef343'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '50f4ccc4aeb0ffb8ec648b90a84ff188dbfed5364075cf0c6045c5696caf6ca9'
@@ -77,7 +73,7 @@ sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
             'b6e695edbe349505a89c98054a54443acd90830a312cd035393c5c0a624e45c0'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
-            '0f3f237cf2981966690e6e9c12984de33cd0ae1451d9f2011c864a585823fbe8')
+            'f6518174c24a59b20d33de332445b72d1b6576ecb514b8f1d1471e67822e8b0e')
 validpgpkeys=('64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
             '4FE5E3262872E4CC')
 pkgver() {
