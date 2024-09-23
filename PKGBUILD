@@ -4,12 +4,12 @@
 pkgbase=linux61-rt
 pkgname=("$pkgbase" "$pkgbase-headers")
 _basekernel=6.1
-_sub=109
-_rtpatchver=rt41
+_sub=111
+_rtpatchver=rt42
 _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
-pkgver=6.1.109_rt41
+pkgver=6.1.111_rt42
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org"
@@ -25,6 +25,8 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
         '0102-Revert-drmi915-improve_the_catch-all_evict_to_handle_lock_contention.patch'
         '0103-drmi915-improve_the_catch-all_evict_to_handle_lock_contention.patch'
+        # MANJARO Patches
+        '0999-patch_realtek.patch'
         # Bootsplash
         '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0302-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
@@ -48,11 +50,12 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         #"$url/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgver}-${_rtpatchver}.patch.xz")
         "https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/$_basekernel/older/patch-$_pkgver-$_rtpatchver.patch.xz")
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            'af7441740e7ebbf414e7ffd62d8771b75249e364533f55337fac8d9a53dfbaf4'
-            '947702c017db4f1bf987059befc6dc8a19c25e08b333c4b6ddba9053e5dc3b60'
+            '3c13dc8349ab414c60bfcb25e0cf857089422d8b72cb5bce4f118e26f33e7b73'
+            '0823eb2c12ac77d51b1ac13984a5bbcc46562259c306e39c89495401c04de0ef'
             'de35604b1337f3d7cd7ce8dc02a741bfdde05709f22f4dfd29d065b20b517e4c'
             '982806daa2c789a63cf685eef71a82754b0530852b7ba130cc9d4025dab79b2f'
             '0a32a567966d7c33035634c46d56073e8a6f66e4d9729b8b25d09579d00c3e7b'
+            'b88d42565ce771cb6c8f98b7c05aada6b8024578a1985e5772dc5a2d07facee0'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '50f4ccc4aeb0ffb8ec648b90a84ff188dbfed5364075cf0c6045c5696caf6ca9'
@@ -70,7 +73,7 @@ sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
             'b6e695edbe349505a89c98054a54443acd90830a312cd035393c5c0a624e45c0'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
-            '6f6cebcf133d61be5f5f6775eb2d48f7a93e35a0eff9276a8eb187c0bb65961f')
+            'acec53a34f31cde1f4435a54b20216540638e02d973ed4d7bd6fcfe98449cb9b')
 validpgpkeys=('64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
             '4FE5E3262872E4CC')
 pkgver() {
