@@ -10,7 +10,7 @@ _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
 pkgver=6.1.119_rt45
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 url="https://www.kernel.org"
 license=('GPL2')
@@ -178,10 +178,13 @@ package_linux61-rt-headers() {
   pkgdesc="Header files and scripts for building modules for ${pkgbase/linux/Linux} kernel"
   depends=('gawk' 'python' 'libelf' 'pahole')
   provides=("linux-headers=$pkgver")
-  replaces=('linux515-rt-headers' 'linux60-rt-headers')
 
   cd "linux-${_basekernel}"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
+
+  # add real version for building modules and running depmod from hook
+  echo "${_kernver}" |
+    install -Dm644 /dev/stdin "${_builddir}/version"
 
   install -Dt "${_builddir}" -m644 Makefile .config Module.symvers
   install -Dt "${_builddir}/kernel" -m644 kernel/Makefile
@@ -248,9 +251,10 @@ package_linux61-rt-headers() {
   done < <(find "${_builddir}" -type f -perm -u+x ! -name vmlinux -print0 2>/dev/null)
   strip $STRIP_STATIC "${_builddir}/vmlinux"
 
+  echo "Adding symlink..."
+  mkdir -p "${pkgdir}/usr/src"
+  ln -sr "${_builddir}" "${pkgdir}/usr/src/${pkgbase}"
+
   # remove unwanted files
   find ${_builddir} -name '*.orig' -delete
-
-  # Fix permissions
-  chmod -R u=rwX,go=rX "${_builddir}"
 }
