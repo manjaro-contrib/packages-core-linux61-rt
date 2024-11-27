@@ -10,15 +10,13 @@ _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
 pkgver=6.1.119_rt45
-pkgrel=2
+pkgrel=3
 arch=('x86_64')
 url="https://www.kernel.org"
 license=('GPL2')
 makedepends=('bc' 'cpio' 'git' 'graphviz' 'imagemagick' 'kmod' 'libelf' 'pahole' 'perl' 'python-sphinx' 'tar' 'texlive-latexextra' 'xmlto' 'xz')
 options=('!strip')
 source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
-        # upstream patch
-        "$url/pub/linux/kernel/v6.x/patch-${_pkgver}.xz"
         # rt-config
         'config.rt'
         # ARCH Patches
@@ -49,6 +47,9 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         # RT Patch
         #"$url/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgver}-${_rtpatchver}.patch.xz")
         "https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/$_basekernel/older/patch-$_pkgver-$_rtpatchver.patch.xz")
+
+_srcdir="linux-${_basekernel}"
+
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
             'ee8b5e536d042db69aeb5799ae464d6dab9e4830f42aa19fd05e54cc06303435'
             'd180ff0a279f76b12d5cebf47448216a3d500b9a5a4e80d4074fbad3a8a99079'
@@ -74,6 +75,11 @@ sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
             '353176a6b50ff9943bd835a1b31012759fab60733192ff217ce936d58f7af828')
+
+# upstream patch
+if [[ ! "$_sub" == "0" ]]; then
+  source+=("$url/pub/linux/kernel/v6.x/patch-${_pkgver}.xz")
+fi
 validpgpkeys=('64254695FFF0AA4466CC19E67B96E8162A8CF5D1' # Sebastian Andrzej Siewior
             '4FE5E3262872E4CC')
 pkgver() {
@@ -81,16 +87,18 @@ pkgver() {
 }
 
 prepare() {
-  cd "linux-${_basekernel}"
+  cd "$_srcdir"
 
+if [[ ! "$_sub" == "0" ]]; then
   # add upstream patch
   patch -p1 -i "../patch-${_pkgver}"
+fi
 
   # Add RT patch
   msg "realtime patch..."
   patch -p1 -i "../patch-${_pkgver}-${_rtpatchver}.patch"
 
- local src
+  local src
   for src in "${source[@]}"; do
       src="${src%%::*}"
       src="${src##*/}"
@@ -99,54 +107,49 @@ prepare() {
       patch -Np1 < "../$src"
   done
 
-  msg2 "Applying 0999-acs.gitpatch"
-  patch --ignore-whitespace --fuzz 3 -p1 < "../0999-acs.gitpatch"
-
-  msg2 "0413-bootsplash"
-  git apply -p1 < "${srcdir}/0413-bootsplash.gitpatch"
-
-  cat '../config.rt' > ./.config
+  msg2 "add config"
+  cat "../config.rt" > ./.config
 
   if [ "${_kernelname}" != "" ]; then
     sed -i "s|CONFIG_LOCALVERSION=.*|CONFIG_LOCALVERSION=\"${_kernelname}\"|g" ./.config
     sed -i "s|CONFIG_LOCALVERSION_AUTO=.*|CONFIG_LOCALVERSION_AUTO=n|" ./.config
   fi
 
-  # set extraversion to pkgrel
+  msg "set extraversion to pkgrel"
   sed -ri "s|^(EXTRAVERSION =).*|\1 -${pkgrel}|" Makefile
 
-  # don't run depmod on 'make install'. We'll do this ourselves in packaging
+  msg "don't run depmod on 'make install'"
+  # We'll do this ourselves in packaging
   sed -i '2iexit 0' scripts/depmod.sh
 
-  # get kernel version
+  msg "get kernel version"
   make prepare
 
-  # rewrite configuration
+  msg "rewrite configuration"
   yes "" | make config >/dev/null
 }
 
 build() {
-  cd "linux-${_basekernel}"
+  cd "$_srcdir"
 
-  # build!
+  msg "build"
   make ${MAKEFLAGS} LOCALVERSION= bzImage modules
 }
 
 package_linux61-rt() {
   pkgdesc="The ${pkgbase/linux/Linux} kernel and modules"
-  depends=('coreutils' 'initramfs' 'kmod')
-  optdepends=('wireless-regdb: to set the correct wireless channels of your country'
-              'linux-firmware: firmware images needed for some devices')
+  depends=('coreutils' 'linux-firmware' 'kmod' 'initramfs')
+  optdepends=('wireless-regdb: to set the correct wireless channels of your country')
   provides=("linux=${pkgver}" VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE KSMBD-MODULE)
-  replaces=('linux515-rt' 'linux60-rt')
 
-  cd "linux-${_basekernel}"
+  cd "$_srcdir"
 
   # get kernel version
   _kernver="$(make LOCALVERSION= kernelrelease)"
 
   mkdir -p "${pkgdir}"/{boot,usr/lib/modules}
-  make LOCALVERSION= INSTALL_MOD_PATH="${pkgdir}/usr" INSTALL_MOD_STRIP=1 modules_install
+  ZSTD_CLEVEL=19 make LOCALVERSION= INSTALL_MOD_PATH="${pkgdir}/usr" \
+  INSTALL_MOD_STRIP=1 modules_install
 
   # systemd expects to find the kernel here to allow hibernation
   # https://github.com/systemd/systemd/commit/edda44605f06a41fb86b7ab8128dcf99161d2344
@@ -157,18 +160,10 @@ package_linux61-rt() {
   echo "${_basekernel}-rt-${CARCH}" | install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modules/${_kernver}/kernelbase"
 
   # add kernel version
-  echo "${_pkgver}-${_rtpatchver}-${pkgrel}-MANJARO x64" > "${pkgdir}/boot/linux-${_basever}-${CARCH}.kver"
+  echo "${_pkgver}-${_rtpatchver}-${pkgrel}-MANJARO x64" > "${pkgdir}/boot/${pkgbase}-${CARCH}.kver"
 
-  # make room for external modules
-  local _extramodules="extramodules-${_basekernel}-rt${_kernelname:--MANJARO}"
-  ln -s "../${_extramodules}" "${pkgdir}/usr/lib/modules/${_kernver}/extramodules"
-
-  # add real version for building modules and running depmod from hook
-  echo "${_kernver}" |
-    install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modules/${_extramodules}/version"
-
-  # remove build and source links
-  rm "${pkgdir}"/usr/lib/modules/${_kernver}/{source,build}
+  # remove build link
+  rm "${pkgdir}"/usr/lib/modules/${_kernver}/build
 
   # now we call depmod...
   depmod -b "${pkgdir}/usr" -F System.map "${_kernver}"
@@ -179,7 +174,7 @@ package_linux61-rt-headers() {
   depends=('gawk' 'python' 'libelf' 'pahole')
   provides=("linux-headers=$pkgver")
 
-  cd "linux-${_basekernel}"
+  cd "$_srcdir"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
   # add real version for building modules and running depmod from hook
