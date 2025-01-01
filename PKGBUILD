@@ -5,11 +5,11 @@ pkgbase=linux61-rt
 pkgname=("$pkgbase" "$pkgbase-headers")
 _basekernel=6.1
 _sub=120
-_rtpatchver=rt46
+_rtpatchver=rt47
 _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
-pkgver=6.1.120_rt46
+pkgver=6.1.120_rt47
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org"
@@ -20,11 +20,10 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         # rt-config
         'config.rt'
         # ARCH Patches
+        # ARCH Patches
         '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
         '0102-Revert-drmi915-improve_the_catch-all_evict_to_handle_lock_contention.patch'
         '0103-drmi915-improve_the_catch-all_evict_to_handle_lock_contention.patch'
-        # https://gitlab.freedesktop.org/drm/amd/-/issues/3831
-        0001-amdgpu-uvd-get-ring-reference-from-rq-scheduler.patch::https://github.com/torvalds/linux/commit/47f402a3e08113e0f5d8e1e6fcc197667a16022f.patch
         # MANJARO Patches
         '0999-patch_realtek.patch'
         # Bootsplash
@@ -53,11 +52,10 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
 _srcdir="linux-${_basekernel}"
 
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            '8740711e851824601b31c69ccae9fe2c4b359ccd884825ff64b548e7182af45d'
+            '37e4435d7e152f031099289c7bd869a3c29a5d8b55e72bb20aa549901b51dfdb'
             'de35604b1337f3d7cd7ce8dc02a741bfdde05709f22f4dfd29d065b20b517e4c'
             '982806daa2c789a63cf685eef71a82754b0530852b7ba130cc9d4025dab79b2f'
             '0a32a567966d7c33035634c46d56073e8a6f66e4d9729b8b25d09579d00c3e7b'
-            '861fe92258827ccd1501dcf969e168408e97cfc64ee16f3abd0ba504ade353b3'
             'b88d42565ce771cb6c8f98b7c05aada6b8024578a1985e5772dc5a2d07facee0'
             '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
@@ -76,7 +74,7 @@ sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
             'b6e695edbe349505a89c98054a54443acd90830a312cd035393c5c0a624e45c0'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
-            '82e21999b9565937575211586dd4609de809f0db75c8685b720d550359af725e'
+            'cab347fc1a09b866304b74db9ff2350f753e881e6a470a167d935ab5706c085b'
             '15a07c4fed08a01ec28129c4659882294e7bb618099756ff9df519c32a2b70c1')
 
 # upstream patch
