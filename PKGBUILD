@@ -4,12 +4,12 @@
 pkgbase=linux61-rt
 pkgname=("$pkgbase" "$pkgbase-headers")
 _basekernel=6.1
-_sub=120
-_rtpatchver=rt47
+_sub=127
+_rtpatchver=rt48
 _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
-pkgver=6.1.120_rt47
+pkgver=6.1.127_rt48
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org"
@@ -19,7 +19,6 @@ options=('!strip')
 source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         # rt-config
         'config.rt'
-        # ARCH Patches
         # ARCH Patches
         '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
         '0102-Revert-drmi915-improve_the_catch-all_evict_to_handle_lock_contention.patch'
@@ -52,7 +51,7 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
 _srcdir="linux-${_basekernel}"
 
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            '37e4435d7e152f031099289c7bd869a3c29a5d8b55e72bb20aa549901b51dfdb'
+            'd1685c406c99781368f06f304e6b242296f00a60e97a9ce04f4b2e1478f871a7'
             'de35604b1337f3d7cd7ce8dc02a741bfdde05709f22f4dfd29d065b20b517e4c'
             '982806daa2c789a63cf685eef71a82754b0530852b7ba130cc9d4025dab79b2f'
             '0a32a567966d7c33035634c46d56073e8a6f66e4d9729b8b25d09579d00c3e7b'
@@ -74,8 +73,8 @@ sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
             'b6e695edbe349505a89c98054a54443acd90830a312cd035393c5c0a624e45c0'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
-            'cab347fc1a09b866304b74db9ff2350f753e881e6a470a167d935ab5706c085b'
-            '15a07c4fed08a01ec28129c4659882294e7bb618099756ff9df519c32a2b70c1')
+            'af7266b470077f3887c2581ec4353259935a7f554bc158ab1cf06ab9624c07eb'
+            '33c5bcfafb33cdf922b07be1bae9baaeca5b6f04eba7443524bc5eb787efddf1')
 
 # upstream patch
 if [[ ! "$_sub" == "0" ]]; then
