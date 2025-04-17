@@ -4,12 +4,12 @@
 pkgbase=linux61-rt
 pkgname=("$pkgbase" "$pkgbase-headers")
 _basekernel=6.1
-_sub=132
-_rtpatchver=rt50
+_sub=134
+_rtpatchver=rt51
 _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
-pkgver=6.1.132_rt50
+pkgver=6.1.134_rt51
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org"
@@ -51,7 +51,7 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
 _srcdir="linux-${_basekernel}"
 
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            '27f92f8a3d9b64a1671af2cd89cb6b949905280eb3ae569f90de4ca72563bc25'
+            'abfb67ed38a0b715e4db945899da7c18669f41df57a83c2101f54eaaa38cccc9'
             'de35604b1337f3d7cd7ce8dc02a741bfdde05709f22f4dfd29d065b20b517e4c'
             '982806daa2c789a63cf685eef71a82754b0530852b7ba130cc9d4025dab79b2f'
             '0a32a567966d7c33035634c46d56073e8a6f66e4d9729b8b25d09579d00c3e7b'
@@ -73,8 +73,8 @@ sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
             'b6e695edbe349505a89c98054a54443acd90830a312cd035393c5c0a624e45c0'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
-            '98ae13d7133be650f66f6b799013913f0aec460234a8305359a5b087f4e83691'
-            '6cd64986385279847439425be922aac31605a8d351e6ed32e033a323420504f7')
+            'ff43e5aceea927dd005bd957eb80d963c0294150cac449cdf1a9cb95a5b2dfa2'
+            '68f27139ab62b7dbbee8abcfc8fdb757a4ba92bf9cf3ccb3877d0a4bc76779c1')
 
 # upstream patch
 if [[ ! "$_sub" == "0" ]]; then
