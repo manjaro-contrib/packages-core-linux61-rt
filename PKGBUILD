@@ -4,13 +4,13 @@
 pkgbase=linux61-rt
 pkgname=("$pkgbase" "$pkgbase-headers")
 _basekernel=6.1
-_sub=134
-_rtpatchver=rt51
+_sub=141
+_rtpatchver=rt52
 _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
-pkgver=6.1.134_rt51
-pkgrel=2
+pkgver=6.1.141_rt52
+pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org"
 license=('GPL2')
@@ -20,30 +20,12 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         # rt-config
         'config.rt'
         'linux-6.1.135-nonstring.patch'
-        'linux-6.1.135-gnu11.patch'
         # ARCH Patches
         '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
         '0102-Revert-drmi915-improve_the_catch-all_evict_to_handle_lock_contention.patch'
         '0103-drmi915-improve_the_catch-all_evict_to_handle_lock_contention.patch'
         # MANJARO Patches
         '0999-patch_realtek.patch'
-        # Bootsplash
-        '0301-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
-        '0302-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
-        '0303-revert-fbcon-remove-soft-scrollback-code.patch'
-        '0401-bootsplash.patch'
-        '0402-bootsplash.patch'
-        '0403-bootsplash.patch'
-        '0404-bootsplash.patch'
-        '0405-bootsplash.patch'
-        '0406-bootsplash.patch'
-        '0407-bootsplash.patch'
-        '0408-bootsplash.patch'
-        '0409-bootsplash.patch'
-        '0410-bootsplash.patch'
-        '0411-bootsplash.patch'
-        '0412-bootsplash.patch'
-        '0413-bootsplash.gitpatch'
         # ACS_override patch
         '0999-acs.gitpatch'
         # RT Patch
@@ -53,32 +35,15 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
 _srcdir="linux-${_basekernel}"
 
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            'abfb67ed38a0b715e4db945899da7c18669f41df57a83c2101f54eaaa38cccc9'
+            '34df07298382daa0f2059ae681dda7b6f570e19a0fb8d12d1ea81e54706c718f'
             '40dd47dce0247ac5ec10a150d74239b0ec7b27d0c75c1bf95f4428ccd533e37b'
-            'b2b682c665b4e5f23b4d32fa2e7ce61d9b556e89bd0b955de97e26ce318ab521'
             'de35604b1337f3d7cd7ce8dc02a741bfdde05709f22f4dfd29d065b20b517e4c'
             '982806daa2c789a63cf685eef71a82754b0530852b7ba130cc9d4025dab79b2f'
             '0a32a567966d7c33035634c46d56073e8a6f66e4d9729b8b25d09579d00c3e7b'
             'b88d42565ce771cb6c8f98b7c05aada6b8024578a1985e5772dc5a2d07facee0'
-            '2b11905b63b05b25807dd64757c779da74dd4c37e36d3f7a46485b1ee5a9d326'
-            '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
-            '50f4ccc4aeb0ffb8ec648b90a84ff188dbfed5364075cf0c6045c5696caf6ca9'
-            'e95c4f988cb9337f6c1e3d8affbfe170bea18843f839a3334a38e0ec44ed9000'
-            'a26b3abaec1cd5731bc8431fecb8b3eb0ba47c1992e614643320df14ff859556'
-            '8c1c880f2caa9c7ae43281a35410203887ea8eae750fe8d360d0c8bf80fcc6e0'
-            '1144d51e5eb980fceeec16004f3645ed04a60fac9e0c7cf88a15c5c1e7a4b89e'
-            'dd4b69def2efacf4a6c442202ad5cb93d492c03886d7c61de87696e5a83e2846'
-            '028b07f0c954f70ca37237b62e04103e81f7c658bb8bd65d7d3c2ace301297dc'
-            'a0c548c5703d25ae34b57931f1162de8b18937e676e5791a0f039922090881e7'
-            '8dbb5ab3cb99e48d97d4e2f2e3df5d0de66f3721b4f7fd94a708089f53245c77'
-            'a7aefeacf22c600fafd9e040a985a913643095db7272c296b77a0a651c6a140a'
-            'cf06d959a53eff6d3c287327f1cb2a68346d725cfd1370bc7482a0edc75692fc'
-            '27471eee564ca3149dd271b0817719b5565a9594dc4d884fe3dc51a5f03832bc'
-            'b6e695edbe349505a89c98054a54443acd90830a312cd035393c5c0a624e45c0'
-            '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
-            'ff43e5aceea927dd005bd957eb80d963c0294150cac449cdf1a9cb95a5b2dfa2'
-            '68f27139ab62b7dbbee8abcfc8fdb757a4ba92bf9cf3ccb3877d0a4bc76779c1')
+            '441f74b7716b81ef01a17be1797e5ec28065c4271b6784e0426b1a4821726fd6'
+            'cebdb380288f64a1863b52a0f4c5e8bd86d8174794065f68083cfc8fc0716036')
 
 # upstream patch
 if [[ ! "$_sub" == "0" ]]; then
