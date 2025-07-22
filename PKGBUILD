@@ -4,12 +4,12 @@
 pkgbase=linux61-rt
 pkgname=("$pkgbase" "$pkgbase-headers")
 _basekernel=6.1
-_sub=141
-_rtpatchver=rt52
+_sub=146
+_rtpatchver=rt53
 _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
-pkgver=6.1.141_rt52
+pkgver=6.1.146_rt53
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org"
@@ -19,6 +19,8 @@ options=('!strip')
 source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         # rt-config
         'config.rt'
+        # Mailing list
+        # https://lore.kernel.org/all/fb4cce81-1e36-4887-a1e0-0cfd1a26693e@googlemail.com/
         'linux-6.1.135-nonstring.patch'
         # ARCH Patches
         '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
@@ -35,15 +37,15 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
 _srcdir="linux-${_basekernel}"
 
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            '34df07298382daa0f2059ae681dda7b6f570e19a0fb8d12d1ea81e54706c718f'
+            '171991fbee5373f5395cd33d7fe318ab0cca993171e4d0afe214852d281b772e'
             '40dd47dce0247ac5ec10a150d74239b0ec7b27d0c75c1bf95f4428ccd533e37b'
             'de35604b1337f3d7cd7ce8dc02a741bfdde05709f22f4dfd29d065b20b517e4c'
             '982806daa2c789a63cf685eef71a82754b0530852b7ba130cc9d4025dab79b2f'
             '0a32a567966d7c33035634c46d56073e8a6f66e4d9729b8b25d09579d00c3e7b'
             'b88d42565ce771cb6c8f98b7c05aada6b8024578a1985e5772dc5a2d07facee0'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
-            '441f74b7716b81ef01a17be1797e5ec28065c4271b6784e0426b1a4821726fd6'
-            'cebdb380288f64a1863b52a0f4c5e8bd86d8174794065f68083cfc8fc0716036')
+            'acdad4ffa2310784690007faab563be0452ab24964267a50bca241c4ac09e4cf'
+            'a28cab2259ef9f716768ecc40ad9ac9fa95a491dbbd835788cc482ac91fe08a8')
 
 # upstream patch
 if [[ ! "$_sub" == "0" ]]; then
