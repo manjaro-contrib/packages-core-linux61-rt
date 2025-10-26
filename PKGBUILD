@@ -4,12 +4,12 @@
 pkgbase=linux61-rt
 pkgname=("$pkgbase" "$pkgbase-headers")
 _basekernel=6.1
-_sub=156
-_rtpatchver=rt56
+_sub=157
+_rtpatchver=rt57
 _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
-pkgver=6.1.156_rt56
+pkgver=6.1.157_rt57
 pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org"
@@ -18,7 +18,7 @@ makedepends=('bc' 'cpio' 'git' 'graphviz' 'imagemagick' 'kmod' 'libelf' 'pahole'
 options=('!strip')
 source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         # rt-config
-        'config.rt'
+        config.rt
         # Mailing list
         # https://lore.kernel.org/all/fb4cce81-1e36-4887-a1e0-0cfd1a26693e@googlemail.com/
         'linux-6.1.135-nonstring.patch'
@@ -37,15 +37,15 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
 _srcdir="linux-${_basekernel}"
 
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            'e7a688b6b07f5fad9ceb8c4a8fdf19c4974a2552a9f939053dd7c42031ad9634'
+            '78f97bc974bae5d8082fd5935e8b4f98159829c6721e391dd62e0e8f6a194040'
             '40dd47dce0247ac5ec10a150d74239b0ec7b27d0c75c1bf95f4428ccd533e37b'
             'de35604b1337f3d7cd7ce8dc02a741bfdde05709f22f4dfd29d065b20b517e4c'
             '982806daa2c789a63cf685eef71a82754b0530852b7ba130cc9d4025dab79b2f'
             '0a32a567966d7c33035634c46d56073e8a6f66e4d9729b8b25d09579d00c3e7b'
             'b88d42565ce771cb6c8f98b7c05aada6b8024578a1985e5772dc5a2d07facee0'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
-            '9324c1607fac439e4024ecd4111ef1aa7b80e4a545804847582f53a27881aaea'
-            '17112eb195293cfdbba390ec6e6b7de4de3d16bfd382c4825f1c8afd024844c3')
+            '95f6ca2654e5d136a4673980cf307a1f82023838e2a09be5c84a9b52cdd207da'
+            'b642b25ca07130f1a7c1266fe8cde9f82ab833ab8e0eb0165801251db609c7f9')
 
 # upstream patch
 if [[ ! "$_sub" == "0" ]]; then
