@@ -4,13 +4,13 @@
 pkgbase=linux61-rt
 pkgname=("$pkgbase" "$pkgbase-headers")
 _basekernel=6.1
-_sub=158
-_rtpatchver=rt58
+_sub=163
+_rtpatchver=rt59
 _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
-pkgver=6.1.158_rt58
-pkgrel=2
+pkgver=6.1.163_rt59
+pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org"
 license=('GPL2')
@@ -22,6 +22,8 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         # Mailing list
         # https://lore.kernel.org/all/fb4cce81-1e36-4887-a1e0-0cfd1a26693e@googlemail.com/
         'linux-6.1.135-nonstring.patch'
+        # Upstream
+        '0000-libbpf-Fix-Wdiscarded-qualifiers-under-C23.patch'
         # ARCH Patches
         '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
         '0102-Revert-drmi915-improve_the_catch-all_evict_to_handle_lock_contention.patch'
@@ -37,15 +39,16 @@ source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
 _srcdir="linux-${_basekernel}"
 
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
-            '2e12a5cee38145347319914d147264cb601ebd6de9e97ed3ae48fa115210cd68'
+            '74183599b566c645d8be7a8724a7e7a86e102c524df9e740e2e46ace1416e449'
             '40dd47dce0247ac5ec10a150d74239b0ec7b27d0c75c1bf95f4428ccd533e37b'
+            'e79c8f35a84051b37cc4900f545963d601335758884107e0bec71fead249396b'
             'de35604b1337f3d7cd7ce8dc02a741bfdde05709f22f4dfd29d065b20b517e4c'
             '982806daa2c789a63cf685eef71a82754b0530852b7ba130cc9d4025dab79b2f'
             '0a32a567966d7c33035634c46d56073e8a6f66e4d9729b8b25d09579d00c3e7b'
             'b88d42565ce771cb6c8f98b7c05aada6b8024578a1985e5772dc5a2d07facee0'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
-            '5acdb9d149c9f0897d7788f929eacac226b95f5f5bde43383627cca37ff27461'
-            'aab050eb8e145eb9096e7510271b159d70c658f6891334643849ffac03025212')
+            '9c53cfe026463ac7d6b3b81d506f1ba8133efc88f770baa40c807b68e6ce2562'
+            'fe4c07076ff7614fdc75c42fb50c9a0a6f7e817df8c95671016a05e02b3cd89c')
 
 # upstream patch
 if [[ ! "$_sub" == "0" ]]; then
