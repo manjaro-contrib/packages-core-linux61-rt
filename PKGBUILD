@@ -16,7 +16,7 @@ url="https://www.kernel.org"
 license=('GPL2')
 makedepends=('bc' 'cpio' 'git' 'graphviz' 'imagemagick' 'kmod' 'libelf' 'pahole' 'perl' 'python-sphinx' 'tar' 'texlive-latexextra' 'xmlto' 'xz')
 options=('!strip')
-source=("$url/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
+source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.xz"
         # rt-config
         config.rt
         # Mailing list
