@@ -4,13 +4,13 @@
 pkgbase=linux61-rt
 pkgname=("$pkgbase" "$pkgbase-headers")
 _basekernel=6.1
-_sub=167
-_rtpatchver=rt62
+_sub=182
+_rtpatchver=rt67
 _basever=${pkgbase//linux}
 _kernelname=-MANJARO
 _pkgver=${_basekernel}.${_sub}
-pkgver=6.1.167_rt62
-pkgrel=9
+pkgver=6.1.182_rt67
+pkgrel=1
 arch=('x86_64')
 url="https://www.kernel.org"
 license=('GPL2')
@@ -23,7 +23,7 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.x
         # https://lore.kernel.org/all/fb4cce81-1e36-4887-a1e0-0cfd1a26693e@googlemail.com/
         'linux-6.1.135-nonstring.patch'
         # Upstream
-        '0000-libbpf-Fix-Wdiscarded-qualifiers-under-C23.patch'
+        #
         # ARCH Patches
         '0101-ZEN_Add_sysctl_and_CONFIG_to_disallow_unprivileged_CLONE_NEWUSER.patch'
         '0102-Revert-drmi915-improve_the_catch-all_evict_to_handle_lock_contention.patch'
@@ -33,22 +33,21 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_basekernel}.tar.x
         # ACS_override patch
         '0999-acs.gitpatch'
         # RT Patch
-        #"$url/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgver}-${_rtpatchver}.patch.xz")
-        "https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/$_basekernel/older/patch-$_pkgver-$_rtpatchver.patch.xz")
+        "https://cdn.kernel.org/pub/linux/kernel/projects/rt/${_basekernel}/patch-${_pkgver}-${_rtpatchver}.patch.xz")
+        #"https://mirrors.edge.kernel.org/pub/linux/kernel/projects/rt/$_basekernel/older/patch-$_pkgver-$_rtpatchver.patch.xz")
 
 _srcdir="linux-${_basekernel}"
 
 sha256sums=('2ca1f17051a430f6fed1196e4952717507171acfd97d96577212502703b25deb'
             'dd0b76e9259ca18351e6ee3f16f0da847b6caa389491be7b1b3a0b924259dc60'
             '40dd47dce0247ac5ec10a150d74239b0ec7b27d0c75c1bf95f4428ccd533e37b'
-            'e79c8f35a84051b37cc4900f545963d601335758884107e0bec71fead249396b'
             'de35604b1337f3d7cd7ce8dc02a741bfdde05709f22f4dfd29d065b20b517e4c'
             '982806daa2c789a63cf685eef71a82754b0530852b7ba130cc9d4025dab79b2f'
             '0a32a567966d7c33035634c46d56073e8a6f66e4d9729b8b25d09579d00c3e7b'
             'b88d42565ce771cb6c8f98b7c05aada6b8024578a1985e5772dc5a2d07facee0'
             '5f2d2c4ab326830df11d5bc985feab2988ee929bbf249f85453536e1998951bd'
-            '748439c22f3c921a10be7c90ecef62c4e595c4946dd065be0f65d4068160bb91'
-            '54583daa00a22a6ab0a09c3e34b5e40f0bd1a1126fde02ceb7199342c8dee3a0')
+            'c3f5500643c7120915f4c7aadb169d05324fd0a445c640a7b450735732900422'
+            '1aceb25b142f89d74e96c9e4155c0a8529f84ae01031dfe24dee694cb756dcc6')
 
 # upstream patch
 if [[ ! "$_sub" == "0" ]]; then
